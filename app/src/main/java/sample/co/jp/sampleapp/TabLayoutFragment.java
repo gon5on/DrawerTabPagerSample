@@ -21,8 +21,42 @@ public class TabLayoutFragment extends Fragment {
         ViewPager viewPager = view.findViewById(R.id.viewPager);
         viewPager.setAdapter(adapter);
 
-        TabLayout tabLayout = view.findViewById(R.id.tabLayout);
+        final TabLayout tabLayout = view.findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(viewPager);
+        tabLayout.getTabAt(2).select();     //初期タブ
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                switch (tab.getPosition()) {
+                    case 0:
+                    case 1:
+                        //色変更
+                        tabLayout.setSelectedTabIndicatorColor(getResources().getColor(android.R.color.holo_blue_dark));
+                        break;
+                    case 2:
+                    case 3:
+                    case 4:
+                        //色変更
+                        tabLayout.setSelectedTabIndicatorColor(getResources().getColor(android.R.color.holo_green_light));
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+
 
         return view;
     }
