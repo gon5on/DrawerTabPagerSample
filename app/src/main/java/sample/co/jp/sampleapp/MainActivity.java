@@ -1,15 +1,17 @@
 package sample.co.jp.sampleapp;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -42,7 +44,15 @@ public class MainActivity extends AppCompatActivity
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
 
-        Fragment fragment = getFragmentManager().findFragmentByTag("CONTENT2");
+        List<Fragment> fragments = getSupportFragmentManager().getFragments();
+
+        Fragment fragment = null;
+        if(fragments != null){
+            for(Fragment tmp : fragments){
+                if(tmp != null && tmp.isVisible())
+                    fragment = tmp;
+            }
+        }
 
         //ドロワーを開いていたら閉じる
         if (drawer.isDrawerOpen(GravityCompat.START)) {

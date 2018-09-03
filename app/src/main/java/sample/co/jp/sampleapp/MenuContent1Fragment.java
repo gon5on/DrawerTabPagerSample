@@ -21,7 +21,7 @@ public class MenuContent1Fragment extends Fragment {
                 MenuContent2Fragment fragment = new MenuContent2Fragment();     //本当はファクトリーメソッドを使用してインスタンス化
 
                 //バックスタックに貯めつつ、フラグメントを開く
-                getFragmentManager().beginTransaction().replace(R.id.container, fragment).addToBackStack("CONTENT2").commit();
+                getFragmentManager().beginTransaction().replace(R.id.container, fragment).addToBackStack(null).commit();
             }
         });
 
